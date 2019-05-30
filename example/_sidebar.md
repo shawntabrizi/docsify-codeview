@@ -1,4 +1,6 @@
 - [Home](/)
- - [With Code](with-code.md)
- - [Without Code](without-code.md)
- - [Without Codeview](without-codeview.md)
+  - [With Codeview](with-codeview.md)
+  - [Without Codeview](without-codeview.md)
+  - [With Tabs](with-tabs.md)
+  - [With Codeview and Tabs](with-codeview-tabs.md)
+

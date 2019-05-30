@@ -11,3 +11,10 @@ Curabitur est purus, fringilla quis posuere vitae, fringilla sit amet lorem. Viv
 Phasellus at turpis ac nisi tincidunt laoreet sed id ipsum. Suspendisse nec neque arcu. Suspendisse efficitur maximus justo et commodo. Duis fringilla ex in arcu luctus posuere. Sed ligula tortor, auctor sit amet pretium et, iaculis eu nunc. Vestibulum sit amet lobortis neque. Nulla ultrices dolor ut dapibus congue. Aliquam tincidunt, tortor in euismod condimentum, nulla nibh egestas velit, quis tincidunt mauris odio vitae lorem. Praesent laoreet massa et sollicitudin luctus. In eget gravida velit. Aliquam tempus tempus tincidunt. Integer a lectus sodales, venenatis arcu eu, volutpat neque. Morbi interdum molestie leo, vel pharetra ipsum pellentesque sed. Donec iaculis consequat risus, sit amet pulvinar ante volutpat eget. In hac habitasse platea dictumst.
 
 Ut at est egestas, tempor eros ullamcorper, dignissim sapien. In ut aliquet nulla. Praesent in ligula nec metus luctus rutrum eu non massa. Maecenas eget lorem quis tortor hendrerit ultricies volutpat nec nisi. Pellentesque varius iaculis porta. Quisque sit amet ullamcorper libero, a tristique urna. Ut ornare, dui et efficitur molestie, dolor dolor porttitor mauris, sodales elementum tortor nisi tempus dolor. Phasellus in augue aliquet, commodo felis vel, vulputate ipsum.
+
+
+[embedded-code](./assets/template.rs ':include :type=code embed-template')
+
+[embedded-code-final](./assets/solution.rs ':include :type=code embed-final')
+
+[embedded-code-previous](./assets/previous.rs ':include :type=code embed-previous')
