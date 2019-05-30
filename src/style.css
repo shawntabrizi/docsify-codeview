@@ -57,3 +57,31 @@
     }
 }
 /* End Responsive Layout */
+
+.content {
+    padding-left: 10px;
+    padding-top: 0px;
+    left: 200px;
+}
+
+.markdown-section {
+    max-width: 100%;
+    padding: 0;
+}
+
+/* TODO: Clean up these sidebar styles*/
+
+.sidebar {
+    background-color: #1b1b1b;
+    font-size: 1rem;
+    width: 200px;
+}
+
+.sidebar-toggle {
+    width: unset;
+}
+
+.sidebar-toggle span {
+    width: 24px;
+    height: 4px;
+}
