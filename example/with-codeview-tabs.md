@@ -16,14 +16,14 @@ Ut at est egestas, tempor eros ullamcorper, dignissim sapien. In ut aliquet null
 
 #### ** Template **
 
-[embedded-code](./assets/template.rs ':include :type=code embed-template')
+[embedded-code](./assets/template.rs ':include :type=code template-rust')
 
 #### ** Solution **
 
-[embedded-code-final](./assets/solution.rs ':include :type=code embed-final')
+[embedded-code-final](./assets/solution.rs ':include :type=code final-rust')
 
 #### ** Previous Chapter Solution **
 
-[embedded-code-previous](./assets/previous.rs ':include :type=code embed-previous')
+[embedded-code-previous](./assets/previous.rs ':include :type=code previous-rust')
 
 <!-- tabs:end -->
