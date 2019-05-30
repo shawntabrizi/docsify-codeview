@@ -25,24 +25,75 @@ window.$docsify.plugins.push(
         hook.afterEach(function (html) {
             var parser = new DOMParser();
             var htmlDoc = parser.parseFromString(html, 'text/html');
-			var template_element = htmlDoc.querySelectorAll("code[class*=lang-template-]")[0];
-			var final_element = htmlDoc.querySelectorAll("code[class*=lang-final-]")[0];
-			var previous_element = htmlDoc.querySelectorAll("code[class*=lang-previous-]")[0];
+			let allFiles = htmlDoc.querySelectorAll("code[class*=lang-]");
 
+			// --- Defaults
+			// names of the files.
+			let names = [];
+			// codes in each file, same order.
+			let code_nodes = [];
+			let lang = DEFAULT_LANG;
+
+			// scrape file names.
+			for (let n of allFiles.values()) {
+				code_nodes.push(n.innerText)
+				names.push(
+					n.className.split("-")[1]
+					+ "."
+					+ n.className.split("-")[2]
+				);
+				if (n.className.split("-")[2]) {
+					lang = n.className.split("-")[2]
+				}
+			}
+
+			// global env.
 			var env = {
-				code_template: template_element ? template_element.innerText : DEFAULT_CONTENT,
-				code_final: final_element ? final_element.innerText : DEFAULT_CONTENT,
-				code_previous: previous_element ? previous_element.innerText: DEFAULT_CONTENT,
-				lang: DEFAULT_LANG
+				codes: code_nodes,
+				lang: lang,
 			}
 
-			if (previous_element) {
-				var classList = previous_element.className.split("-");
-				env.lang = classList[classList.length-1];
+			// add file selector
+			let selector = document.createElement("select")
+			selector.id = "file-selector"
+			let idx = 0
+			names.forEach((name, idx) => {
+				let opt = document.createElement("option")
+				opt.value = idx
+				opt.innerHTML = name
+				selector.appendChild(opt)
+				idx += 1
+			})
+			selector.onchange = function(e) {
+				let idx = Number(this.value)
+				loadEditor(env.codes[idx], false, false)
 			}
+
+			// add diff selector
+			let diff = document.createElement("select")
+			diff.id = "diff-selector"
+			names.forEach((name, idx) => {
+				let opt = document.createElement("option")
+				opt.value = idx
+				opt.innerHTML = name
+				diff.appendChild(opt)
+				idx += 1
+			})
+			diff.onchange = function() {
+				let s_idx = selector.value
+				let d_idx = this.value
+				loadDiffEditor(
+					env.codes[s_idx],
+					env.codes[d_idx],
+				)
+			}
+
+			env.selector = selector;
+			env.diff = diff
 			window.cv_env = env;
 
-            if (template_element || final_element) {
+			console.log(env);
+            if (allFiles.length) {
                 var two_col = [
                     '<div class="row">',
 						'<div class="lesson column">', html, '</div>',
@@ -69,50 +120,51 @@ window.$docsify.plugins.push(
 			hintRevealed = false;
             if (document.getElementById("editor")) {
 				var editor_bar = document.getElementById("editor_bar");
+				editor_bar.appendChild(window.cv_env.selector)
+				editor_bar.appendChild(window.cv_env.diff)
 
-				if (window.cv_env.code_previous && window.cv_env.code_template) {
-					var previous_button = document.createElement("button");
-                    previous_button.innerHTML = "&#8656; &#x1D321;";
-                    previous_button.classList += "editor-button";
-					previous_button.onclick = function () { loadDiffEditor(window.cv_env.code_template, window.cv_env.code_previous); };
-                    editor_bar.appendChild(previous_button);
-                }
+			// 	if (window.cv_env.code_previous && window.cv_env.code_template) {
+			// 		var previous_button = document.createElement("button");
+            //         previous_button.innerHTML = "&#8656; &#x1D321;";
+            //         previous_button.classList += "editor-button";
+			// 		previous_button.onclick = function () { loadDiffEditor(window.cv_env.code_template, window.cv_env.code_previous); };
+            //         editor_bar.appendChild(previous_button);
+            //     }
 
-				if (window.cv_env.code_template) {
-					var template_button = document.createElement("button");
-                    template_button.innerHTML = "&#x1F6E0; Starting Point";
-					template_button.classList += "editor-button";
-					template_button.onclick = function () { loadEditor(false, true) };
-                    editor_bar.appendChild(template_button);
-					loadEditor(false, true);
-                }
+			// 	if (window.cv_env.code_template) {
+			// 		var template_button = document.createElement("button");
+            //         template_button.innerHTML = "&#x1F6E0; Starting Point";
+			// 		template_button.classList += "editor-button";
+			// 		template_button.onclick = function () { loadEditor(false, true) };
+            //         editor_bar.appendChild(template_button);
+			// 		loadEditor(false, true);
+            //     }
 
-				if (window.cv_env.code_final) {
-                    var final_button = document.createElement("button");
-                    final_button.innerHTML = "&#x2705; Potential Solution";
-                    final_button.classList += "editor-button";
-					final_button.onclick = function () { loadEditor(true, false); };
-                    editor_bar.appendChild(final_button);
+			// 	if (window.cv_env.code_final) {
+            //         var final_button = document.createElement("button");
+            //         final_button.innerHTML = "&#x2705; Potential Solution";
+            //         final_button.classList += "editor-button";
+			// 		final_button.onclick = function () { loadEditor(true, false); };
+            //         editor_bar.appendChild(final_button);
 
-					if (!window.cv_env.code_template) {
-                        loadEditor(true, false);
-                    }
-                }
+			// 		if (!window.cv_env.code_template) {
+            //             loadEditor(true, false);
+            //         }
+            //     }
 
-				if (window.cv_env.code_template && window.cv_env.code_final) {
-                    var diff_button = document.createElement("button");
-                    diff_button.innerHTML = "&#x1D321; Diff View";
-                    diff_button.classList += "editor-button";
-					diff_button.onclick = function () { loadDiffEditor(window.cv_env.code_template, window.cv_env.code_final); };
-                    editor_bar.appendChild(diff_button);
-                }
+			// 	if (window.cv_env.code_template && window.cv_env.code_final) {
+            //         var diff_button = document.createElement("button");
+            //         diff_button.innerHTML = "&#x1D321; Diff View";
+            //         diff_button.classList += "editor-button";
+			// 		diff_button.onclick = function () { loadDiffEditor(window.cv_env.code_template, window.cv_env.code_final); };
+            //         editor_bar.appendChild(diff_button);
+            //     }
             }
         })
 	}
 );
 
-function loadEditor(read_only, template_update) {
-	let editor_text = read_only ? window.cv_env.code_final : window.cv_env.code_template;
+function loadEditor(editor_text, read_only, template_update) {
 	read_only = read_only || false;
 	template_update = template_update || false;
 
