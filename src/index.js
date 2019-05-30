@@ -1,4 +1,4 @@
-import { install } from './pagination'
+import { install } from './codeview'
 
 window.$docsify = window.$docsify || {}
 

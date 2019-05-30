@@ -1,0 +1,59 @@
+/* CSS for editor div to make sure it uses the full height */
+.editor {
+    height: calc(100vh - 25px);
+    overflow: hidden;
+}
+
+.editor-bar {
+    height: 25px;
+    font-size: 14px;
+}
+
+.editor-button {
+    background-color: #1e1e1e;
+    margin-left: 10px;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding-top: 50px;
+    margin-top: -50px;
+}
+
+/* Add separation between the Editor and the tutorial */
+.lesson {
+    border-right: 1px solid rgba(0,0,0,0.07);
+    padding-right: 10px;
+}
+
+/* When the page does not have code, this style is used to hold the main content */
+.fullpage {
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px;
+}
+
+/* Responsive Two Column Layout */
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+  
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1024px) {
+    .column {
+        width: 100%;
+        overflow-y: initial;
+        height: initial;
+    }
+}
+/* End Responsive Layout */

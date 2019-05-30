@@ -1,13 +1,14 @@
 {
   "name": "docsify-codeview",
   "version": "0.1.0",
-  "description": "Docsify plugin for an in-page code editor",
+  "description": "A docsify plugin for an embedded code editor.",
   "main": "src",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "docsify"
+    "docsify",
+    "monaco"
   ],
   "author": "Shawn Tabrizi",
   "license": "MIT"
