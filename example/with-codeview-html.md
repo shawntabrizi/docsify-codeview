@@ -13,8 +13,8 @@ Phasellus at turpis ac nisi tincidunt laoreet sed id ipsum. Suspendisse nec nequ
 Ut at est egestas, tempor eros ullamcorper, dignissim sapien. In ut aliquet nulla. Praesent in ligula nec metus luctus rutrum eu non massa. Maecenas eget lorem quis tortor hendrerit ultricies volutpat nec nisi. Pellentesque varius iaculis porta. Quisque sit amet ullamcorper libero, a tristique urna. Ut ornare, dui et efficitur molestie, dolor dolor porttitor mauris, sodales elementum tortor nisi tempus dolor. Phasellus in augue aliquet, commodo felis vel, vulputate ipsum.
 
 
-[embedded-code](./assets/template.rs ':include :type=code template-rust')
+[embedded-code](./assets/template.html ':include :type=code template-html')
 
-[embedded-code-final](./assets/solution.rs ':include :type=code final-rust')
+[embedded-code-final](./assets/solution.html ':include :type=code final-html')
 
-[embedded-code-previous](./assets/previous.rs ':include :type=code previous-rust')
+[embedded-code-previous](./assets/previous.html ':include :type=code previous-html')
